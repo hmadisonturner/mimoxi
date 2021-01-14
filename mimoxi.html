@@ -1,0 +1,415 @@
+<!-- mimoxi 2020/06/08 by maddy august -->
+<html>
+  <head>
+    <title> mimoxi by maddy august </title>
+    <meta name="viewport" content="minimal-ui, width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <style> 
+      body { 
+        margin:0;
+        padding:0;
+        overflow:hidden;
+        width: 100%;
+	      height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      svg { 
+        visibility: hidden ;
+        width: 40%;
+      }
+      table { /* html table ftw bb !!! */
+        width: 100%;
+	      height: 100%;
+        max-width: 100vh;
+	      border-collapse: collapse;
+      }
+      td {
+        width: 33%;
+        height: 33%;
+        border: 0;
+        background:radial-gradient(at 33.3% 33.3%, #fff, #ccc)
+      }
+      td#panel { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 25 6'><style>rect {stroke:none;fill:rgb(204,204,204)}<\/style><rect x='0' y='2' width='1' height='5'/><rect x='1' y='1' width='1' height='1'/><rect x='2' y='2' width='1' height='5'/><rect x='3' y='1' width='1' height='1'/><rect x='4' y='2' width='1' height='5'/><rect x='6' y='2' width='1' height='1'/><rect x='7' y='0' width='1' height='1'/><rect x='7' y='2' width='1' height='5'/><rect x='9' y='2' width='1' height='5'/><rect x='10' y='1' width='1' height='1'/><rect x='11' y='2' width='1' height='5'/><rect x='12' y='1' width='1' height='1'/><rect x='13' y='2' width='1' height='5'/><rect x='15' y='2' width='1' height='4'/><rect x='16' y='1' width='1' height='1'/><rect x='16' y='6' width='1' height='1'/><rect x='17' y='2' width='1' height='4'/><rect x='19' y='1' width='1' height='2'/><rect x='19' y='5' width='1' height='2'/><rect x='20' y='3' width='1' height='2'/><rect x='21' y='1' width='1' height='2'/><rect x='21' y='5' width='1' height='2'/><rect x='23' y='2' width='1' height='1'/><rect x='24' y='0' width='1' height='1'/><rect x='24' y='2' width='1' height='5'/></svg>");
+        background-size: 100% 100%;
+        background-color: #fff;
+        width: 100%;
+        height: 100%;
+        vertical-align: top;
+        text-align: right;
+      }
+      td#do.lit {background:radial-gradient(at 33.3% 33.3%, #cff, #9fc)}
+      td#do.on {background:radial-gradient(at 33.3% 33.3%, #fff, #9ff)}
+      td#re.lit {background:radial-gradient(at 33.3% 33.3%, #3ff, #0fc)}
+      td#re.on {background:radial-gradient(at 33.3% 33.3%, #cff, #0ff)}
+      td#mi.lit {background:radial-gradient(at 33.3% 33.3%, #3cc, #09c)}
+      td#mi.on {background:radial-gradient(at 33.3% 33.3%, #3cf, #09f)}
+      td#fa.lit {background:radial-gradient(at 33.3% 33.3%, #ccc, #99c)}
+      td#fa.on {background:radial-gradient(at 33.3% 33.3%, #ccf, #99f)}
+      td#so.lit {background:radial-gradient(at 33.3% 33.3%, #fcf, #f9c)}
+      td#so.on {background:radial-gradient(at 33.3% 33.3%, #fcf, #f9f)}
+      td#la.lit {background:radial-gradient(at 33.3% 33.3%, #f3f, #f0c)}
+      td#la.on {background:radial-gradient(at 33.3% 33.3%, #f9f, #f0f)}
+      td#ti.lit {background:radial-gradient(at 33.3% 33.3%, #c3c, #90c)}
+      td#ti.on {background:radial-gradient(at 33.3% 33.3%, #c3f, #90f)}
+      td#do1.lit {background:radial-gradient(at 33.3% 33.3%, #33c, #00c)}
+      td#do1.on {background:radial-gradient(at 33.3% 33.3%, #33f, #00f)}
+    </style>
+  </head>
+
+  <body>
+    <table>
+      <tr>
+        <td id="do1"></td>
+        <td id="ti"></td>
+        <td id="la"></td>
+      </tr>
+      <tr>
+        <td id="mi"></td>
+        <td id="fa"></td>
+        <td id="so"></td>
+      </tr>
+      <tr>
+        <td id="re"></td>
+        <td id="do"></td>
+        <td id="panel">
+          <svg id="mute_btn_svg" viewBox="0 0 21 21" width="30%">
+            <style>
+              circle.btn {fill: none; stroke: #ccc; stroke-width: 0.2px}
+              circle.indicator {fill: #ccc; stroke: none; }
+              path { fill: none; stroke: #ccc; stroke-width: 0.3px }
+              .on path, .on circle.btn { stroke: #0f0 }
+              .on circle.indicator { fill: #0f0 }
+              .sound {visibility:hidden}
+              .on .sound {visibility:visible}
+              .on .x {visibility:hidden}
+            </style>
+            <g>
+              <circle class="btn" cx="10" cy="10" r="8"/>
+              <path d="M4,8 L 4,12 L 7,12 L 11,15 L 11,5 L 7,8 Z"/>
+              <path class="x" d="M13,9 L 15, 11 M15,9 L 13,11"/>
+              <path class="sound" d="M13,9 A 4 4 0 0 1 13,11 M14,8 A 5 5 0 0 1 14,12 M15,7 A 6 6 0 0 1 15,13"/>
+            </g>
+          </svg>
+          <svg id="mode_btn_svg" viewBox="0 0 21 21" width="30%">
+            <g>
+              <circle class="btn" cx="10" cy="10" r="8"/>
+              <circle class="indicator" cx="10" cy="10" r="2"/>
+            </g>
+          </svg>
+        </td>
+      </tr>
+    </table>
+    <noscript>
+      no script, no mimoxi
+    </noscript>
+    <script>
+
+        // idle animation
+        // mode switch
+        // social media metadata
+window.onload = (event) => {
+  (function () {
+      new Mimoxi()
+  })()
+}
+
+class Mimoxi {
+  constructor () {
+    const scale = [ 
+      'do', // 1:1 root 
+      're', // 2:1 octave
+      'mi', // 3:2 perfect fifth
+      'fa', // 4:3 perfect fourth
+      'so', // 5:4 major third
+      'la', // 6:5 minor third
+      'ti', // 7:6 septimal minor third
+      'do1' // 8:7 supermajor second
+    ]
+    this.beat = 90
+    this.panel = document.getElementById('panel')
+    this.keys = scale.map((str, index) => new Mimoxi.Key(this, document.getElementById(str), 792*(index+1)))
+    this.controls = []
+
+    let init = (event) => {
+      let audio = new (window.AudioContext || window.webkitAudioContext)()
+			let buffer = audio.createBuffer(1, 1, 22050)
+			let source = audio.createBufferSource()
+			source.buffer = buffer
+			source.connect(audio.destination)
+			source.start(0)
+      this.audio = audio
+      audio.suspend()
+      
+      document.removeEventListener('touchend', init)
+      document.removeEventListener('mouseup', init)
+      
+      let bind = () => { 
+        this.bindKeys()
+        this.bindButtons()
+      }
+      keyPress() ? this.awakenFrom(event.target, bind) : this.awaken(bind)
+
+      function keyPress () {
+        return (event.target.tagName.toLowerCase() === 'td' && event.target.id !== 'panel')
+      }
+    }
+    document.addEventListener('touchend', init);
+    document.addEventListener('mouseup', init);
+  }
+  gameLoop () {
+    this.flash(this.pattern(this.flash(this.flash())))
+  }
+  pattern (callback) {
+    let level = 1
+    let sequence = []
+    for (let i = 0; i < level; i++) {
+      sequence.push(Math.floor(Math.random()*8.99))
+    }
+    let note = () => { 
+      let keyIndex = Math.floor(Math.random()*8.99)
+      this.keys[keyIndex].play()
+    }
+    while (this.buttons.mode.on) {
+
+    }
+    callback()
+  }
+  ask (sequence, callback) {callback()}
+  flash (callback) {callback()}
+  allLitUp () {
+    return this.keys.find((key, index) => key.element.getAttribute('class') !== 'lit') === undefined
+  }
+  updateKeys (map) {
+    this.keys.forEach((key, index) => {
+      key.element.removeAttribute('class')
+      if (map[index].length > 0) key.element.setAttribute('class', map[index])
+    })
+  }
+  hasBrightNeighbor (index) {
+    switch (index) {
+      case 0: 
+        return this.keys[1].bright || this.keys[3].bright
+      case 1: 
+        return this.keys[0].bright || this.keys[2].bright 
+      case 2: 
+        return this.keys[1].bright || this.keys[3].bright || this.keys[7].bright
+      case 3: 
+        return this.keys[0].bright || this.keys[2].bright || this.keys[4].bright
+      case 4: 
+        return this.keys[3].bright || this.keys[5].bright
+      case 5: 
+        return this.keys[4].bright || this.keys[6].bright
+      case 6: 
+        return this.keys[3].bright || this.keys[5].bright || this.keys[7].bright
+      case 7: 
+        return this.keys[2].bright || this.keys[6].bright 
+    }
+    return false
+  }
+  awakenFrom (element, callback) {
+    this.keys.find((key) => key.element === element).bright = true
+    let delay = 90
+    let nextMap = undefined
+
+    let next = () => {
+      if (nextMap) {
+        this.updateKeys(nextMap)
+        nextMap = undefined
+      }
+      if (this.allLitUp()) {
+        if (callback) callback()
+      }
+      else {
+        nextMap = this.keys.map((key, index) => {
+          switch (key.element.getAttribute('class')) {
+            case 'lit':
+            case 'on':
+              return 'lit'
+            default: // no class = dim
+              return this.hasBrightNeighbor(index) ? 'on' : ''
+          }
+        })
+        setTimeout (next, delay)
+      }
+    }
+    next()
+  }
+  awaken(callback){
+    this.keys[0].light = true
+    this.keys[4].light = true
+    setTimeout(()=>{
+      this.keys[1].light = true
+      this.keys[3].light = true
+      this.keys[5].light = true
+      setTimeout(()=>{
+        this.keys[2].light = true
+        this.keys[6].light = true
+        setTimeout(()=>{
+          this.keys[7].light = true
+          if (callback) callback()
+        }, 90)
+      }, 90)
+    }, 90)
+  }
+  hello(callback){
+    let i = 0
+    let step = () => {
+      if (i === 8) {
+        this.keys[7].stop()
+        if (callback) callback()
+      }
+      else {
+        if (i > 0) this.keys[i - 1].stop()
+        this.keys[i].play()
+        setTimeout(step, this.beat)
+        i++
+      }
+    }
+    step()
+  }
+  bindButtons () {
+    this.buttons = {
+      mode: new Mimoxi.ModeButton(this, document.getElementById('mode_btn_svg')),
+      mute: new Mimoxi.MuteButton(this, document.getElementById('mute_btn_svg'))
+    }
+  }
+  unbindButtons () {
+    for (let b in this.buttons) this.buttons[b].unbindAll()
+  }
+  unbindKeys() {
+    this.controls.forEach(control => control.unbindAll())
+  }
+  bindKeys(){
+    this.unbindKeys()
+    let play = (event) => {
+      event.preventDefault()
+      this.keys.find(key => key.element === event.target).play()
+    }
+    let stop = (event) => {
+      this.keys.find(key => key.element === event.target).stop()
+    }
+    this.keys.forEach(key => {
+      this.controls.push(new Mimoxi.Control(this, key.element)
+        .bind('mousedown', play)
+        .bind('mouseup', stop)
+        .bind('touchstart', play)
+        .bind('touchend', stop)
+      )
+    })
+  }
+}
+// bind/unbind (element, event, handler)
+Mimoxi.Control = class MimoxiControl {
+  constructor (mimoxi, element) { 
+    this.mimoxi = mimoxi
+    this.element = element 
+    this.bindings = {}
+  }
+  bind (event, handler) {
+    this.bindings[event] = handler
+    this.element.addEventListener(event, handler)
+    return this
+  }
+  unbind (event, handler) { 
+    delete this.bindings[event]
+    this.element.removeEventListener(event, handler)
+    return this
+  }
+  unbindAll () {
+    for (let binding in this.bindings) {
+      this.unbind(binding, this.bindings[binding])
+    }
+    return this
+  }
+}
+
+Mimoxi.Button = class MimoxiButton extends Mimoxi.Control {
+  constructor (mimoxi, element) {
+    super(mimoxi, element)
+    this.element.style.visibility = 'visible'
+    this.graphic = this.element.getElementsByTagName('g')[0]
+    this.off = true
+  }
+  set on (flag) {
+    //this.mimoxi.hello()
+    this.unbindAll()
+    this.bind('click', (event) => this.off = true)
+    this.graphic.setAttribute('class', 'on')
+  }
+  get on () { 
+    return this.graphic.hasAttribute('class')
+  }
+  set off (flag) {
+    this.unbindAll()
+    this.bind('click', (event) => this.on = true)
+    this.graphic.removeAttribute('class')
+  }
+  get off () { 
+    return !this.graphic.hasAttribute('class')
+  }
+}
+Mimoxi.ModeButton = class MimoshiModeButton extends Mimoxi.Button {
+  set on (flag) {
+    this.mimoxi.hello()
+    super.on = true
+  }
+}
+Mimoxi.MuteButton = class MimoshiMuteButton extends Mimoxi.Button {
+  set on (flag) {
+    this.mimoxi.audio.resume()
+    super.on = true
+  }
+  set off (flag) {
+    this.mimoxi.audio.suspend()
+    super.off = true
+  }
+}
+Mimoxi.Key = class MimoxiKey {
+  constructor (mimoxi, element, frequency) {
+    this.element = element
+	  this.frequency = frequency
+	  this.mimoxi = mimoxi
+	}
+	play () {
+    this.bright = true
+    this.sound()
+  }
+	sound() {
+    if (this.oscillator) this.stop()
+	  this.oscillator = this.mimoxi.audio.createOscillator()
+	  this.oscillator.frequency.value = this.frequency
+    this.oscillator.connect(this.mimoxi.audio.destination)
+	  this.oscillator.start()
+	}
+	stop () {
+    this.light = true
+    this.silence()
+  }
+	silence() {
+	  if (this.oscillator) this.oscillator.stop()
+    delete this.oscillator
+	}
+  get light () {
+    return this.element.getAttribute('class') === 'lit'
+  }
+  set light (flag) {
+    this.element.setAttribute('class','lit')
+  }
+  get bright () {
+    return this.element.getAttribute('class') === 'on'
+  }
+  set bright (flag) {
+    this.element.setAttribute('class','on')
+  }
+  get dim () {
+    return !(this.element.hasAttribute('class'))
+  }
+  set dim (flag) {
+    this.element.removeAttribute('class')
+  }
+}
+    </script>
+  </body>
+</html>
+

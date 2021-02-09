@@ -216,11 +216,11 @@
           .getElementById(str), 792 * (index + 1)))
         this.controls = []
 
-        let init = (event) => {
-          let audio = new(window.AudioContext || window.webkitAudioContext)
+        const init = (event) => {
+          const audio = new(window.AudioContext || window.webkitAudioContext)
           ()
-          let buffer = audio.createBuffer(1, 1, 22050)
-          let source = audio.createBufferSource()
+          const buffer = audio.createBuffer(1, 1, 22050)
+          const source = audio.createBufferSource()
           source.buffer = buffer
           source.connect(audio.destination)
           source.start(0)
@@ -230,7 +230,7 @@
           document.removeEventListener('touchend', init)
           document.removeEventListener('mouseup', init)
 
-          let bind = () => {
+          const bind = () => {
             this.bindKeys()
             this.bindButtons()
           }
@@ -252,10 +252,10 @@
         let level = 1
         let sequence = []
         for (let i = 0; i < level; i++) {
-          sequence.push(Math.floor(Math.random() * 8.99))
+          sequence.push(Math.floor(Math.random() * 9))
         }
         let note = () => {
-          let keyIndex = Math.floor(Math.random() * 8.99)
+          let keyIndex = Math.floor(Math.random() * 9)
           this.keys[keyIndex].play()
         }
         while (this.buttons.mode.on) {
@@ -309,7 +309,7 @@
         let delay = 90
         let nextMap = undefined
 
-        let next = () => {
+        const next = () => {
           if (nextMap) {
             this.updateKeys(nextMap)
             nextMap = undefined
@@ -350,7 +350,7 @@
       }
       hello(callback) {
         let i = 0
-        let step = () => {
+        const step = () => {
           if (i === 8) {
             this.keys[7].stop()
             if (callback) callback()
@@ -379,11 +379,11 @@
       }
       bindKeys() {
         this.unbindKeys()
-        let play = (event) => {
+        const play = (event) => {
           event.preventDefault()
           this.keys.find(key => key.element === event.target).play()
         }
-        let stop = (event) => {
+        const stop = (event) => {
           this.keys.find(key => key.element === event.target).stop()
         }
         this.keys.forEach(key => {
@@ -511,3 +511,4 @@
 
 </html>
 <!-- mimoxi 2020/06/08 -->
+

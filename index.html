@@ -5,12 +5,16 @@
   <meta name="viewport"
     content="minimal-ui, width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <style>
+* {
+  margin: 0;
+  padding: 0;
+  border: none;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
     body {
-      margin: 0;
-      padding: 0;
       overflow: hidden;
-      width: 100%;
-      height: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -21,113 +25,114 @@
       width: 40%;
     }
 
-    table {
-      /* html table ftw bb !!! */
-      width: 100%;
-      height: 100%;
-      max-width: 100vh;
-      border-collapse: collapse;
+    div.container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr)
     }
 
-    td {
-      width: 33%;
-      height: 33%;
+    button {
+      width: 33vh;
+      height: 33vh;
       border: 0;
       background: radial-gradient(at 33.3% 33.3%, #fff, #ccc)
     }
 
-    td#panel {
+    button:focus{
+      outline: none;
+    }
+
+    div#panel {
       background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 25 6'><style>rect {stroke:none;fill:rgb(204,204,204)}<\/style><rect x='0' y='2' width='1' height='5'/><rect x='1' y='1' width='1' height='1'/><rect x='2' y='2' width='1' height='5'/><rect x='3' y='1' width='1' height='1'/><rect x='4' y='2' width='1' height='5'/><rect x='6' y='2' width='1' height='1'/><rect x='7' y='0' width='1' height='1'/><rect x='7' y='2' width='1' height='5'/><rect x='9' y='2' width='1' height='5'/><rect x='10' y='1' width='1' height='1'/><rect x='11' y='2' width='1' height='5'/><rect x='12' y='1' width='1' height='1'/><rect x='13' y='2' width='1' height='5'/><rect x='15' y='2' width='1' height='4'/><rect x='16' y='1' width='1' height='1'/><rect x='16' y='6' width='1' height='1'/><rect x='17' y='2' width='1' height='4'/><rect x='19' y='1' width='1' height='2'/><rect x='19' y='5' width='1' height='2'/><rect x='20' y='3' width='1' height='2'/><rect x='21' y='1' width='1' height='2'/><rect x='21' y='5' width='1' height='2'/><rect x='23' y='2' width='1' height='1'/><rect x='24' y='0' width='1' height='1'/><rect x='24' y='2' width='1' height='5'/></svg>");
       background-size: 100% 100%;
       background-color: #fff;
-      width: 100%;
-      height: 100%;
+      width: 33vh;
+      height: 33vh;
       vertical-align: top;
       text-align: right;
     }
 
-    td#do.lit {
+    button#do.lit {
       background: radial-gradient(at 33.3% 33.3%, #cff, #9fc)
     }
 
-    td#do.on {
+    button#do.on {
       background: radial-gradient(at 33.3% 33.3%, #fff, #9ff)
     }
 
-    td#re.lit {
+    button#re.lit {
       background: radial-gradient(at 33.3% 33.3%, #3ff, #0fc)
     }
 
-    td#re.on {
+    button#re.on {
       background: radial-gradient(at 33.3% 33.3%, #cff, #0ff)
     }
 
-    td#mi.lit {
+    button#mi.lit {
       background: radial-gradient(at 33.3% 33.3%, #3cc, #09c)
     }
 
-    td#mi.on {
+    button#mi.on {
       background: radial-gradient(at 33.3% 33.3%, #3cf, #09f)
     }
 
-    td#fa.lit {
+    button#fa.lit {
       background: radial-gradient(at 33.3% 33.3%, #ccc, #99c)
     }
 
-    td#fa.on {
+    button#fa.on {
       background: radial-gradient(at 33.3% 33.3%, #ccf, #99f)
     }
 
-    td#so.lit {
+    button#so.lit {
       background: radial-gradient(at 33.3% 33.3%, #fcf, #f9c)
     }
 
-    td#so.on {
+    button#so.on {
       background: radial-gradient(at 33.3% 33.3%, #fcf, #f9f)
     }
 
-    td#la.lit {
+    button#la.lit {
       background: radial-gradient(at 33.3% 33.3%, #f3f, #f0c)
     }
 
-    td#la.on {
+    button#la.on {
       background: radial-gradient(at 33.3% 33.3%, #f9f, #f0f)
     }
 
-    td#ti.lit {
+    button#ti.lit {
       background: radial-gradient(at 33.3% 33.3%, #c3c, #90c)
     }
 
-    td#ti.on {
+    button#ti.on {
       background: radial-gradient(at 33.3% 33.3%, #c3f, #90f)
     }
 
-    td#do1.lit {
+    button#do1.lit {
       background: radial-gradient(at 33.3% 33.3%, #33c, #00c)
     }
 
-    td#do1.on {
+    button#do1.on {
       background: radial-gradient(at 33.3% 33.3%, #33f, #00f)
     }
   </style>
 </head>
 
 <body>
-  <table>
-    <tr>
-      <td id="do1"></td>
-      <td id="ti"></td>
-      <td id="la"></td>
-    </tr>
-    <tr>
-      <td id="mi"></td>
-      <td id="fa"></td>
-      <td id="so"></td>
-    </tr>
-    <tr>
-      <td id="re"></td>
-      <td id="do"></td>
-      <td id="panel">
+  <div class="container">
+    
+      <button id="do1"></button>
+      <button id="ti"></button>
+      <button id="la"></button>
+    
+    
+      <button id="mi"></button>
+      <button id="fa"></button>
+      <button id="so"></button>
+    
+    
+      <button id="re"></button>
+      <button id="do"></button>
+      <div id="panel">
         <svg id="mute_btn_svg" viewBox="0 0 21 21" width="30%">
           <style>
             circle.btn {
@@ -182,9 +187,9 @@
             <circle class="indicator" cx="10" cy="10" r="2" />
           </g>
         </svg>
-      </td>
-    </tr>
-  </table>
+      </div>
+    
+  </div>
   <noscript>
     no script, no mimoxi
   </noscript>
@@ -238,7 +243,7 @@
             bind)
 
           function keyPress() {
-            return (event.target.tagName.toLowerCase() === 'td' && event
+            return (event.target.tagName.toLowerCase() === 'button' && event
               .target.id !== 'panel')
           }
         }

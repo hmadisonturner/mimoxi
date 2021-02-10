@@ -5,14 +5,15 @@
   <meta name="viewport"
     content="minimal-ui, width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <style>
-* {
-  margin: 0;
-  padding: 0;
-  border: none;
-  font: inherit;
-  font-size: 100%;
-  vertical-align: baseline;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      border: none;
+      font: inherit;
+      font-size: 100%;
+      vertical-align: baseline;
+    }
+
     body {
       overflow: hidden;
       display: flex;
@@ -37,7 +38,7 @@
       background: radial-gradient(at 33.3% 33.3%, #fff, #ccc)
     }
 
-    button:focus{
+    button:focus {
       outline: none;
     }
 
@@ -114,81 +115,87 @@
     button#do1.on {
       background: radial-gradient(at 33.3% 33.3%, #33f, #00f)
     }
+
   </style>
 </head>
 
 <body>
   <div class="container">
-    
-      <button id="do1"></button>
-      <button id="ti"></button>
-      <button id="la"></button>
-    
-    
-      <button id="mi"></button>
-      <button id="fa"></button>
-      <button id="so"></button>
-    
-    
-      <button id="re"></button>
-      <button id="do"></button>
-      <div id="panel">
-        <svg id="mute_btn_svg" viewBox="0 0 21 21" width="30%">
-          <style>
-            circle.btn {
-              fill: none;
-              stroke: #ccc;
-              stroke-width: 0.2px
-            }
 
-            circle.indicator {
-              fill: #ccc;
-              stroke: none;
-            }
+    <button id="do1"></button>
+    <button id="ti"></button>
+    <button id="la"></button>
 
-            path {
-              fill: none;
-              stroke: #ccc;
-              stroke-width: 0.3px
-            }
 
-            .on path,
-            .on circle.btn {
-              stroke: #0f0
-            }
+    <button id="mi"></button>
+    <button id="fa"></button>
+    <button id="so"></button>
 
-            .on circle.indicator {
-              fill: #0f0
-            }
 
-            .sound {
-              visibility: hidden
-            }
+    <button id="re"></button>
+    <button id="do"></button>
+    <div id="panel">
+      <svg id="mute_btn_svg" viewBox="0 0 21 21"
+        width="30%">
+        <style>
+          circle.btn {
+            fill: none;
+            stroke: #ccc;
+            stroke-width: 0.2px
+          }
 
-            .on .sound {
-              visibility: visible
-            }
+          circle.indicator {
+            fill: #ccc;
+            stroke: none;
+          }
 
-            .on .x {
-              visibility: hidden
-            }
-          </style>
-          <g>
-            <circle class="btn" cx="10" cy="10" r="8" />
-            <path d="M4,8 L 4,12 L 7,12 L 11,15 L 11,5 L 7,8 Z" />
-            <path class="x" d="M13,9 L 15, 11 M15,9 L 13,11" />
-            <path class="sound"
-              d="M13,9 A 4 4 0 0 1 13,11 M14,8 A 5 5 0 0 1 14,12 M15,7 A 6 6 0 0 1 15,13" />
-          </g>
-        </svg>
-        <svg id="mode_btn_svg" viewBox="0 0 21 21" width="30%">
-          <g>
-            <circle class="btn" cx="10" cy="10" r="8" />
-            <circle class="indicator" cx="10" cy="10" r="2" />
-          </g>
-        </svg>
-      </div>
-    
+          path {
+            fill: none;
+            stroke: #ccc;
+            stroke-width: 0.3px
+          }
+
+          .on path,
+          .on circle.btn {
+            stroke: #0f0
+          }
+
+          .on circle.indicator {
+            fill: #0f0
+          }
+
+          .sound {
+            visibility: hidden
+          }
+
+          .on .sound {
+            visibility: visible
+          }
+
+          .on .x {
+            visibility: hidden
+          }
+
+        </style>
+        <g>
+          <circle class="btn" cx="10" cy="10" r="8" />
+          <path
+            d="M4,8 L 4,12 L 7,12 L 11,15 L 11,5 L 7,8 Z" />
+          <path class="x"
+            d="M13,9 L 15, 11 M15,9 L 13,11" />
+          <path class="sound"
+            d="M13,9 A 4 4 0 0 1 13,11 M14,8 A 5 5 0 0 1 14,12 M15,7 A 6 6 0 0 1 15,13" />
+        </g>
+      </svg>
+      <svg id="mode_btn_svg" viewBox="0 0 21 21"
+        width="30%">
+        <g>
+          <circle class="btn" cx="10" cy="10" r="8" />
+          <circle class="indicator" cx="10" cy="10" r="2" />
+        </g>
+      </svg>
+    </div>
+
   </div>
   <noscript>
     no script, no mimoxi
@@ -217,13 +224,15 @@
         ]
         this.beat = 90
         this.panel = document.getElementById('panel')
-        this.keys = scale.map((str, index) => new Mimoxi.Key(this, document
-          .getElementById(str), 792 * (index + 1)))
+        this.keys = scale.map((str, index) => new Mimoxi
+          .Key(this, document
+            .getElementById(str), 792 * (index + 1)))
         this.controls = []
 
         const init = (event) => {
-          const audio = new(window.AudioContext || window.webkitAudioContext)
-          ()
+          const audio = new(window.AudioContext ||
+              window.webkitAudioContext)
+            ()
           const buffer = audio.createBuffer(1, 1, 22050)
           const source = audio.createBufferSource()
           source.buffer = buffer
@@ -239,11 +248,13 @@
             this.bindKeys()
             this.bindButtons()
           }
-          keyPress() ? this.awakenFrom(event.target, bind) : this.awaken(
+          keyPress() ? this.awakenFrom(event.target,
+            bind) : this.awaken(
             bind)
 
           function keyPress() {
-            return (event.target.tagName.toLowerCase() === 'button' && event
+            return (event.target.tagName
+            .toLowerCase() === 'button' && event
               .target.id !== 'panel')
           }
         }
@@ -275,42 +286,53 @@
         callback()
       }
       allLitUp() {
-        return this.keys.find((key, index) => key.element.getAttribute(
-          'class') !== 'lit') === undefined
+        return this.keys.find((key, index) => key.element
+          .getAttribute(
+            'class') !== 'lit') === undefined
       }
       updateKeys(map) {
         this.keys.forEach((key, index) => {
           key.element.removeAttribute('class')
-          if (map[index].length > 0) key.element.setAttribute('class',
-            map[index])
+          if (map[index].length > 0) key.element
+            .setAttribute('class',
+              map[index])
         })
       }
       hasBrightNeighbor(index) {
         switch (index) {
           case 0:
-            return this.keys[1].bright || this.keys[3].bright
+            return this.keys[1].bright || this.keys[3]
+              .bright
           case 1:
-            return this.keys[0].bright || this.keys[2].bright
+            return this.keys[0].bright || this.keys[2]
+              .bright
           case 2:
-            return this.keys[1].bright || this.keys[3].bright || this.keys[7]
+            return this.keys[1].bright || this.keys[3]
+              .bright || this.keys[7]
               .bright
           case 3:
-            return this.keys[0].bright || this.keys[2].bright || this.keys[4]
+            return this.keys[0].bright || this.keys[2]
+              .bright || this.keys[4]
               .bright
           case 4:
-            return this.keys[3].bright || this.keys[5].bright
+            return this.keys[3].bright || this.keys[5]
+              .bright
           case 5:
-            return this.keys[4].bright || this.keys[6].bright
+            return this.keys[4].bright || this.keys[6]
+              .bright
           case 6:
-            return this.keys[3].bright || this.keys[5].bright || this.keys[7]
+            return this.keys[3].bright || this.keys[5]
+              .bright || this.keys[7]
               .bright
           case 7:
-            return this.keys[2].bright || this.keys[6].bright
+            return this.keys[2].bright || this.keys[6]
+              .bright
         }
         return false
       }
       awakenFrom(element, callback) {
-        this.keys.find((key) => key.element === element).bright = true
+        this.keys.find((key) => key.element === element)
+          .bright = true
         let delay = 90
         let nextMap = undefined
 
@@ -323,12 +345,14 @@
             if (callback) callback()
           } else {
             nextMap = this.keys.map((key, index) => {
-              switch (key.element.getAttribute('class')) {
+              switch (key.element.getAttribute(
+                'class')) {
                 case 'lit':
                 case 'on':
                   return 'lit'
                 default: // no class = dim
-                  return this.hasBrightNeighbor(index) ? 'on' : ''
+                  return this.hasBrightNeighbor(
+                    index) ? 'on' : ''
               }
             })
             setTimeout(next, delay)
@@ -370,29 +394,36 @@
       }
       bindButtons() {
         this.buttons = {
-          mode: new Mimoxi.ModeButton(this, document.getElementById(
-            'mode_btn_svg')),
-          mute: new Mimoxi.MuteButton(this, document.getElementById(
-            'mute_btn_svg'))
+          mode: new Mimoxi.ModeButton(this, document
+            .getElementById(
+              'mode_btn_svg')),
+          mute: new Mimoxi.MuteButton(this, document
+            .getElementById(
+              'mute_btn_svg'))
         }
       }
       unbindButtons() {
-        for (let b in this.buttons) this.buttons[b].unbindAll()
+        for (let b in this.buttons) this.buttons[b]
+          .unbindAll()
       }
       unbindKeys() {
-        this.controls.forEach(control => control.unbindAll())
+        this.controls.forEach(control => control
+          .unbindAll())
       }
       bindKeys() {
         this.unbindKeys()
         const play = (event) => {
           event.preventDefault()
-          this.keys.find(key => key.element === event.target).play()
+          this.keys.find(key => key.element === event
+            .target).play()
         }
         const stop = (event) => {
-          this.keys.find(key => key.element === event.target).stop()
+          this.keys.find(key => key.element === event
+            .target).stop()
         }
         this.keys.forEach(key => {
-          this.controls.push(new Mimoxi.Control(this, key.element)
+          this.controls.push(new Mimoxi.Control(this,
+              key.element)
             .bind('mousedown', play)
             .bind('mouseup', stop)
             .bind('touchstart', play)
@@ -426,47 +457,51 @@
       }
     }
 
-    Mimoxi.Button = class MimoxiButton extends Mimoxi.Control {
-      constructor(mimoxi, element) {
-        super(mimoxi, element)
-        this.element.style.visibility = 'visible'
-        this.graphic = this.element.getElementsByTagName('g')[0]
-        this.off = true
+    Mimoxi.Button = class MimoxiButton extends Mimoxi
+      .Control {
+        constructor(mimoxi, element) {
+          super(mimoxi, element)
+          this.element.style.visibility = 'visible'
+          this.graphic = this.element
+            .getElementsByTagName('g')[0]
+          this.off = true
+        }
+        set on(flag) {
+          //this.mimoxi.hello()
+          this.unbindAll()
+          this.bind('click', (event) => this.off = true)
+          this.graphic.setAttribute('class', 'on')
+        }
+        get on() {
+          return this.graphic.hasAttribute('class')
+        }
+        set off(flag) {
+          this.unbindAll()
+          this.bind('click', (event) => this.on = true)
+          this.graphic.removeAttribute('class')
+        }
+        get off() {
+          return !this.graphic.hasAttribute('class')
+        }
       }
-      set on(flag) {
-        //this.mimoxi.hello()
-        this.unbindAll()
-        this.bind('click', (event) => this.off = true)
-        this.graphic.setAttribute('class', 'on')
+    Mimoxi.ModeButton =
+      class MimoshiModeButton extends Mimoxi.Button {
+        set on(flag) {
+          this.mimoxi.hello()
+          super.on = true
+        }
       }
-      get on() {
-        return this.graphic.hasAttribute('class')
+    Mimoxi.MuteButton =
+      class MimoshiMuteButton extends Mimoxi.Button {
+        set on(flag) {
+          this.mimoxi.audio.resume()
+          super.on = true
+        }
+        set off(flag) {
+          this.mimoxi.audio.suspend()
+          super.off = true
+        }
       }
-      set off(flag) {
-        this.unbindAll()
-        this.bind('click', (event) => this.on = true)
-        this.graphic.removeAttribute('class')
-      }
-      get off() {
-        return !this.graphic.hasAttribute('class')
-      }
-    }
-    Mimoxi.ModeButton = class MimoshiModeButton extends Mimoxi.Button {
-      set on(flag) {
-        this.mimoxi.hello()
-        super.on = true
-      }
-    }
-    Mimoxi.MuteButton = class MimoshiMuteButton extends Mimoxi.Button {
-      set on(flag) {
-        this.mimoxi.audio.resume()
-        super.on = true
-      }
-      set off(flag) {
-        this.mimoxi.audio.suspend()
-        super.off = true
-      }
-    }
     Mimoxi.Key = class MimoxiKey {
       constructor(mimoxi, element, frequency) {
         this.element = element
@@ -479,9 +514,11 @@
       }
       sound() {
         if (this.oscillator) this.stop()
-        this.oscillator = this.mimoxi.audio.createOscillator()
+        this.oscillator = this.mimoxi.audio
+          .createOscillator()
         this.oscillator.frequency.value = this.frequency
-        this.oscillator.connect(this.mimoxi.audio.destination)
+        this.oscillator.connect(this.mimoxi.audio
+          .destination)
         this.oscillator.start()
       }
       stop() {
@@ -493,13 +530,15 @@
         delete this.oscillator
       }
       get light() {
-        return this.element.getAttribute('class') === 'lit'
+        return this.element.getAttribute('class') ===
+          'lit'
       }
       set light(flag) {
         this.element.setAttribute('class', 'lit')
       }
       get bright() {
-        return this.element.getAttribute('class') === 'on'
+        return this.element.getAttribute('class') ===
+          'on'
       }
       set bright(flag) {
         this.element.setAttribute('class', 'on')
@@ -511,9 +550,9 @@
         this.element.removeAttribute('class')
       }
     }
+
   </script>
 </body>
 
 </html>
 <!-- mimoxi 2020/06/08 -->
-

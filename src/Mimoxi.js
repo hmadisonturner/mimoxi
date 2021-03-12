@@ -2,6 +2,7 @@ import MimoxiControl from './Control.js'
 import MimoxiModeButton from './ModeButton.js'
 import MimoxiMuteButton from './MuteButton.js'
 import MimoxiKey from './Key.js'
+import MimoxiMelody from './Melody.js'
 export default class Mimoxi {
   constructor () {
     const scale = [
@@ -19,6 +20,7 @@ export default class Mimoxi {
     this.keys = scale.map((str, index) => new MimoxiKey(this, document
       .getElementById(str), 792 * (index + 1)))
     this.controls = []
+    this.level = 1
 
     const init = (event) => {
       const audio = new (window.AudioContext ||
@@ -53,16 +55,15 @@ export default class Mimoxi {
   }
 
   gameLoop () {
-    this.flash(this.pattern(this.flash(this.flash())))
-  }
-
-  pattern (callback) {
-    const level = 1
     const sequence = []
-    for (let i = 0; i < level; i++) {
-      sequence.push(Math.floor(Math.random() * 9))
+    for (let i = 0; i < this.level; i++) {
+      sequence.push(() => {
+        const key = Math.floor(Math.random() * 8)
+        this.keys[key].play()
+        setTimeout(() => this.keys[key].stop(), 1000 / (this.beat / 60))
+      })
     }
-    callback()
+    new MimoxiMelody(sequence, this.beat).play()
   }
 
   ask (sequence, callback) {

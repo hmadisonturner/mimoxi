@@ -205,12 +205,10 @@
     no script, no mimoxi
   </noscript>
   <script type="module">
-    import Mimoxi from "/src/Mimoxi.js"
+    import Mimoxi from "./Mimoxi.js"
 
     window.onload = (event) => {
-      (function() {
-        new Mimoxi()
-      })()
+      new Mimoxi()
     }
 
   </script>

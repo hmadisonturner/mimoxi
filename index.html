@@ -1,219 +1,208 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>mimoxi</title>
+    <meta
+      name="viewport"
+      content="minimal-ui, width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+    />
+    <meta name="description" content="mimoxi is a musical memory game" />
+    <meta name="author" content="Madison Turner" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        border: none;
+        font: inherit;
+        font-size: 100%;
+        vertical-align: baseline;
+      }
 
-<head>
-  <meta charset="utf-8">
-  <title> mimoxi </title>
-  <meta name="viewport"
-    content="minimal-ui, width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <meta name="description" content="mimoxi is a musical memory game">
-  <meta name="author" content="Madison Turner">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      border: none;
-      font: inherit;
-      font-size: 100%;
-      vertical-align: baseline;
-    }
+      body {
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
 
-    body {
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+      svg {
+        visibility: hidden;
+        width: 40%;
+      }
 
-    svg {
-      visibility: hidden;
-      width: 40%;
-    }
+      div.container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+      }
 
-    div.container {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr)
-    }
+      button {
+        width: 33vw;
+        height: 33vh;
+        border: 0;
+        background: radial-gradient(at 33.3% 33.3%, #fff, #ccc);
+      }
 
-    button {
-      width: 33vw;
-      height: 33vh;
-      border: 0;
-      background: radial-gradient(at 33.3% 33.3%, #fff, #ccc)
-    }
+      button:focus {
+        outline: none;
+      }
 
-    button:focus {
-      outline: none;
-    }
+      div#panel {
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 25 6'><style>rect {stroke:none;fill:rgb(204,204,204)}<\/style><rect x='0' y='2' width='1' height='5'/><rect x='1' y='1' width='1' height='1'/><rect x='2' y='2' width='1' height='5'/><rect x='3' y='1' width='1' height='1'/><rect x='4' y='2' width='1' height='5'/><rect x='6' y='2' width='1' height='1'/><rect x='7' y='0' width='1' height='1'/><rect x='7' y='2' width='1' height='5'/><rect x='9' y='2' width='1' height='5'/><rect x='10' y='1' width='1' height='1'/><rect x='11' y='2' width='1' height='5'/><rect x='12' y='1' width='1' height='1'/><rect x='13' y='2' width='1' height='5'/><rect x='15' y='2' width='1' height='4'/><rect x='16' y='1' width='1' height='1'/><rect x='16' y='6' width='1' height='1'/><rect x='17' y='2' width='1' height='4'/><rect x='19' y='1' width='1' height='2'/><rect x='19' y='5' width='1' height='2'/><rect x='20' y='3' width='1' height='2'/><rect x='21' y='1' width='1' height='2'/><rect x='21' y='5' width='1' height='2'/><rect x='23' y='2' width='1' height='1'/><rect x='24' y='0' width='1' height='1'/><rect x='24' y='2' width='1' height='5'/></svg>");
+        background-size: 100% 100%;
+        background-color: #fff;
+        width: 33vw;
+        height: 33vh;
+        vertical-align: top;
+        text-align: right;
+      }
 
-    div#panel {
-      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 25 6'><style>rect {stroke:none;fill:rgb(204,204,204)}<\/style><rect x='0' y='2' width='1' height='5'/><rect x='1' y='1' width='1' height='1'/><rect x='2' y='2' width='1' height='5'/><rect x='3' y='1' width='1' height='1'/><rect x='4' y='2' width='1' height='5'/><rect x='6' y='2' width='1' height='1'/><rect x='7' y='0' width='1' height='1'/><rect x='7' y='2' width='1' height='5'/><rect x='9' y='2' width='1' height='5'/><rect x='10' y='1' width='1' height='1'/><rect x='11' y='2' width='1' height='5'/><rect x='12' y='1' width='1' height='1'/><rect x='13' y='2' width='1' height='5'/><rect x='15' y='2' width='1' height='4'/><rect x='16' y='1' width='1' height='1'/><rect x='16' y='6' width='1' height='1'/><rect x='17' y='2' width='1' height='4'/><rect x='19' y='1' width='1' height='2'/><rect x='19' y='5' width='1' height='2'/><rect x='20' y='3' width='1' height='2'/><rect x='21' y='1' width='1' height='2'/><rect x='21' y='5' width='1' height='2'/><rect x='23' y='2' width='1' height='1'/><rect x='24' y='0' width='1' height='1'/><rect x='24' y='2' width='1' height='5'/></svg>");
-      background-size: 100% 100%;
-      background-color: #fff;
-      width: 33vw;
-      height: 33vh;
-      vertical-align: top;
-      text-align: right;
-    }
+      button#do.lit {
+        background: radial-gradient(at 33.3% 33.3%, #cff, #9fc);
+      }
 
-    button#do.lit {
-      background: radial-gradient(at 33.3% 33.3%, #cff, #9fc)
-    }
+      button#do.on {
+        background: radial-gradient(at 33.3% 33.3%, #fff, #9ff);
+      }
 
-    button#do.on {
-      background: radial-gradient(at 33.3% 33.3%, #fff, #9ff)
-    }
+      button#re.lit {
+        background: radial-gradient(at 33.3% 33.3%, #3ff, #0fc);
+      }
 
-    button#re.lit {
-      background: radial-gradient(at 33.3% 33.3%, #3ff, #0fc)
-    }
+      button#re.on {
+        background: radial-gradient(at 33.3% 33.3%, #cff, #0ff);
+      }
 
-    button#re.on {
-      background: radial-gradient(at 33.3% 33.3%, #cff, #0ff)
-    }
+      button#mi.lit {
+        background: radial-gradient(at 33.3% 33.3%, #3cc, #09c);
+      }
 
-    button#mi.lit {
-      background: radial-gradient(at 33.3% 33.3%, #3cc, #09c)
-    }
+      button#mi.on {
+        background: radial-gradient(at 33.3% 33.3%, #3cf, #09f);
+      }
 
-    button#mi.on {
-      background: radial-gradient(at 33.3% 33.3%, #3cf, #09f)
-    }
+      button#fa.lit {
+        background: radial-gradient(at 33.3% 33.3%, #ccc, #99c);
+      }
 
-    button#fa.lit {
-      background: radial-gradient(at 33.3% 33.3%, #ccc, #99c)
-    }
+      button#fa.on {
+        background: radial-gradient(at 33.3% 33.3%, #ccf, #99f);
+      }
 
-    button#fa.on {
-      background: radial-gradient(at 33.3% 33.3%, #ccf, #99f)
-    }
+      button#so.lit {
+        background: radial-gradient(at 33.3% 33.3%, #fcf, #f9c);
+      }
 
-    button#so.lit {
-      background: radial-gradient(at 33.3% 33.3%, #fcf, #f9c)
-    }
+      button#so.on {
+        background: radial-gradient(at 33.3% 33.3%, #fcf, #f9f);
+      }
 
-    button#so.on {
-      background: radial-gradient(at 33.3% 33.3%, #fcf, #f9f)
-    }
+      button#la.lit {
+        background: radial-gradient(at 33.3% 33.3%, #f3f, #f0c);
+      }
 
-    button#la.lit {
-      background: radial-gradient(at 33.3% 33.3%, #f3f, #f0c)
-    }
+      button#la.on {
+        background: radial-gradient(at 33.3% 33.3%, #f9f, #f0f);
+      }
 
-    button#la.on {
-      background: radial-gradient(at 33.3% 33.3%, #f9f, #f0f)
-    }
+      button#ti.lit {
+        background: radial-gradient(at 33.3% 33.3%, #c3c, #90c);
+      }
 
-    button#ti.lit {
-      background: radial-gradient(at 33.3% 33.3%, #c3c, #90c)
-    }
+      button#ti.on {
+        background: radial-gradient(at 33.3% 33.3%, #c3f, #90f);
+      }
 
-    button#ti.on {
-      background: radial-gradient(at 33.3% 33.3%, #c3f, #90f)
-    }
+      button#do1.lit {
+        background: radial-gradient(at 33.3% 33.3%, #33c, #00c);
+      }
 
-    button#do1.lit {
-      background: radial-gradient(at 33.3% 33.3%, #33c, #00c)
-    }
+      button#do1.on {
+        background: radial-gradient(at 33.3% 33.3%, #33f, #00f);
+      }
+    </style>
+  </head>
 
-    button#do1.on {
-      background: radial-gradient(at 33.3% 33.3%, #33f, #00f)
-    }
+  <body>
+    <div class="container">
+      <button id="do1"></button>
+      <button id="ti"></button>
+      <button id="la"></button>
 
-  </style>
-</head>
+      <button id="mi"></button>
+      <button id="fa"></button>
+      <button id="so"></button>
 
-<body>
-  <div class="container">
+      <button id="re"></button>
+      <button id="do"></button>
+      <div id="panel">
+        <svg id="mute_btn_svg" viewBox="0 0 21 21" width="30%">
+          <style>
+            circle.btn {
+              fill: none;
+              stroke: #ccc;
+              stroke-width: 0.2px;
+            }
 
-    <button id="do1"></button>
-    <button id="ti"></button>
-    <button id="la"></button>
+            circle.indicator {
+              fill: #ccc;
+              stroke: none;
+            }
 
+            path {
+              fill: none;
+              stroke: #ccc;
+              stroke-width: 0.3px;
+            }
 
-    <button id="mi"></button>
-    <button id="fa"></button>
-    <button id="so"></button>
+            .on path,
+            .on circle.btn {
+              stroke: #0f0;
+            }
 
+            .on circle.indicator {
+              fill: #0f0;
+            }
 
-    <button id="re"></button>
-    <button id="do"></button>
-    <div id="panel">
-      <svg id="mute_btn_svg" viewBox="0 0 21 21"
-        width="30%">
-        <style>
-          circle.btn {
-            fill: none;
-            stroke: #ccc;
-            stroke-width: 0.2px
-          }
+            .sound {
+              visibility: hidden;
+            }
 
-          circle.indicator {
-            fill: #ccc;
-            stroke: none;
-          }
+            .on .sound {
+              visibility: visible;
+            }
 
-          path {
-            fill: none;
-            stroke: #ccc;
-            stroke-width: 0.3px
-          }
-
-          .on path,
-          .on circle.btn {
-            stroke: #0f0
-          }
-
-          .on circle.indicator {
-            fill: #0f0
-          }
-
-          .sound {
-            visibility: hidden
-          }
-
-          .on .sound {
-            visibility: visible
-          }
-
-          .on .x {
-            visibility: hidden
-          }
-
-        </style>
-        <g>
-          <circle class="btn" cx="10" cy="10" r="8" />
-          <path
-            d="M4,8 L 4,12 L 7,12 L 11,15 L 11,5 L 7,8 Z" />
-          <path class="x"
-            d="M13,9 L 15, 11 M15,9 L 13,11" />
-          <path class="sound"
-            d="M13,9 A 4 4 0 0 1 13,11 M14,8 A 5 5 0 0 1 14,12 M15,7 A 6 6 0 0 1 15,13" />
-        </g>
-      </svg>
-      <svg id="mode_btn_svg" viewBox="0 0 21 21"
-        width="30%">
-        <g>
-          <circle class="btn" cx="10" cy="10" r="8" />
-          <circle class="indicator" cx="10" cy="10" r="2" />
-        </g>
-      </svg>
+            .on .x {
+              visibility: hidden;
+            }
+          </style>
+          <g>
+            <circle class="btn" cx="10" cy="10" r="8" />
+            <path d="M4,8 L 4,12 L 7,12 L 11,15 L 11,5 L 7,8 Z" />
+            <path class="x" d="M13,9 L 15, 11 M15,9 L 13,11" />
+            <path
+              class="sound"
+              d="M13,9 A 4 4 0 0 1 13,11 M14,8 A 5 5 0 0 1 14,12 M15,7 A 6 6 0 0 1 15,13"
+            />
+          </g>
+        </svg>
+        <svg id="mode_btn_svg" viewBox="0 0 21 21" width="30%">
+          <g>
+            <circle class="btn" cx="10" cy="10" r="8" />
+            <circle class="indicator" cx="10" cy="10" r="2" />
+          </g>
+        </svg>
+      </div>
     </div>
+    <noscript> no script, no mimoxi </noscript>
+    <script type="module">
+      import Mimoxi from "./src/Mimoxi.js";
 
-  </div>
-  <noscript>
-    no script, no mimoxi
-  </noscript>
-  <script type="module">
-    import Mimoxi from "/src/Mimoxi.js"
-
-    window.onload = (event) => {
-      (function() {
-        new Mimoxi()
-      })()
-    }
-
-  </script>
-</body>
-
+      window.onload = (event) => {
+        (function () {
+          window.mimoxi = new Mimoxi();
+        })();
+      };
+    </script>
+  </body>
 </html>

@@ -1,59 +1,56 @@
-export default class
-MimoxiKey {
-  constructor (mimoxi, element, frequency) {
-    this.element = element
-    this.frequency = frequency
-    this.mimoxi = mimoxi
+import MimoxiControl from "./Control.js";
+
+export default class MimoxiKey extends MimoxiControl {
+  constructor(element, audioContext, frequency) {
+    super(element);
+    this.frequency = frequency;
+    this.audio = audioContext;
   }
 
-  play () {
-    this.bright = true
-    this.sound()
+  play() {
+    this.bright = true;
+    this.sound();
   }
 
-  sound () {
-    if (this.oscillator) this.stop()
-    this.oscillator = this.mimoxi.audio
-      .createOscillator()
-    this.oscillator.frequency.value = this.frequency
-    this.oscillator.connect(this.mimoxi.audio
-      .destination)
-    this.oscillator.start()
+  sound() {
+    if (this.oscillator) this.stop();
+    this.oscillator = this.audio.createOscillator();
+    this.oscillator.frequency.value = this.frequency;
+    this.oscillator.connect(this.audio.destination);
+    this.oscillator.start();
   }
 
-  stop () {
-    this.light = true
-    this.silence()
+  stop() {
+    this.light = true;
+    this.silence();
   }
 
-  silence () {
-    if (this.oscillator) this.oscillator.stop()
-    delete this.oscillator
+  silence() {
+    if (this.oscillator) this.oscillator.stop();
+    delete this.oscillator;
   }
 
-  get light () {
-    return this.element.getAttribute('class') ===
-          'lit'
+  get light() {
+    return this.element.getAttribute("class") === "lit";
   }
 
-  set light (flag) {
-    this.element.setAttribute('class', 'lit')
+  set light(flag) {
+    this.element.setAttribute("class", "lit");
   }
 
-  get bright () {
-    return this.element.getAttribute('class') ===
-          'on'
+  get bright() {
+    return this.element.getAttribute("class") === "on";
   }
 
-  set bright (flag) {
-    this.element.setAttribute('class', 'on')
+  set bright(flag) {
+    this.element.setAttribute("class", "on");
   }
 
-  get dim () {
-    return !(this.element.hasAttribute('class'))
+  get dim() {
+    return !this.element.hasAttribute("class");
   }
 
-  set dim (flag) {
-    this.element.removeAttribute('class')
+  set dim(flag) {
+    this.element.removeAttribute("class");
   }
 }

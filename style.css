@@ -1,3 +1,44 @@
+:root {
+  /* All the colors are calculated based on the base color. */
+  --base-color: #cddc39;
+
+  --gray-color: hsl(from var(--base-color) h 0 80);
+  --gray-highlight: hsl(from var(--gray-color) h s calc(l * 1.25));
+
+  --color-0-lit: hsl(from var(--base-color) h 80 60);
+  --color-0-highlight: hsl(from var(--color-0-lit) h s calc(l * 1.35));
+  --color-0-on: hsl(from var(--color-0-lit) h 100 70);
+
+  /* Now we proceed by varying the hue by 45 degrees for each subsequent button. */
+  --color-1-lit: hsl(from var(--color-0-lit) calc(h + 45) s l);
+  --color-1-highlight: hsl(from var(--color-0-highlight) calc(h + 45) s l);
+  --color-1-on: hsl(from var(--color-0-on) calc(h + 45) s l);
+
+  --color-2-lit: hsl(from var(--color-0-lit) calc(h + 90) s l);
+  --color-2-highlight: hsl(from var(--color-0-highlight) calc(h + 90) s l);
+  --color-2-on: hsl(from var(--color-0-on) calc(h + 90) s l);
+
+  --color-3-lit: hsl(from var(--color-0-lit) calc(h + 135) s l);
+  --color-3-highlight: hsl(from var(--color-0-highlight) calc(h + 135) s l);
+  --color-3-on: hsl(from var(--color-0-on) calc(h + 135) s l);
+
+  --color-4-lit: hsl(from var(--color-0-lit) calc(h + 180) s l);
+  --color-4-highlight: hsl(from var(--color-0-highlight) calc(h + 180) s l);
+  --color-4-on: hsl(from var(--color-0-on) calc(h + 180) s l);
+
+  --color-5-lit: hsl(from var(--color-0-lit) calc(h + 225) s l);
+  --color-5-highlight: hsl(from var(--color-0-highlight) calc(h + 225) s l);
+  --color-5-on: hsl(from var(--color-0-on) calc(h + 225) s l);
+
+  --color-6-lit: hsl(from var(--color-0-lit) calc(h + 270) s l);
+  --color-6-highlight: hsl(from var(--color-0-highlight) calc(h + 270) s l);
+  --color-6-on: hsl(from var(--color-0-on) calc(h + 270) s l);
+
+  --color-7-lit: hsl(from var(--color-0-lit) calc(h + 315) s l);
+  --color-7-highlight: hsl(from var(--color-0-highlight) calc(h + 315) s l);
+  --color-7-on: hsl(from var(--color-0-on) calc(h + 315) s l);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -15,8 +56,22 @@ body {
 }
 
 svg {
+  display: inline;
   visibility: hidden;
-  width: 40%;
+  width: 10vw;
+  margin: 3vh 1vw;
+}
+
+svg#logo {
+  display: block;
+  visibility: visible;
+  margin: 0;
+  width: 32vw;
+  height: auto;
+  position: absolute;
+  right: 1vw;
+  bottom: 0;
+  z-index: -1;
 }
 
 div.container {
@@ -28,7 +83,11 @@ button {
   width: 33vw;
   height: 33vh;
   border: 0;
-  background: radial-gradient(at 33.3% 33.3%, #fff, #ccc);
+  background: radial-gradient(
+    at 33.3% 33.3%,
+    var(--gray-highlight),
+    var(--gray-color)
+  );
 }
 
 button:focus {
@@ -36,75 +95,173 @@ button:focus {
 }
 
 div#panel {
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 25 6'><style>rect {stroke:none;fill:rgb(204,204,204)}<\/style><rect x='0' y='2' width='1' height='5'/><rect x='1' y='1' width='1' height='1'/><rect x='2' y='2' width='1' height='5'/><rect x='3' y='1' width='1' height='1'/><rect x='4' y='2' width='1' height='5'/><rect x='6' y='2' width='1' height='1'/><rect x='7' y='0' width='1' height='1'/><rect x='7' y='2' width='1' height='5'/><rect x='9' y='2' width='1' height='5'/><rect x='10' y='1' width='1' height='1'/><rect x='11' y='2' width='1' height='5'/><rect x='12' y='1' width='1' height='1'/><rect x='13' y='2' width='1' height='5'/><rect x='15' y='2' width='1' height='4'/><rect x='16' y='1' width='1' height='1'/><rect x='16' y='6' width='1' height='1'/><rect x='17' y='2' width='1' height='4'/><rect x='19' y='1' width='1' height='2'/><rect x='19' y='5' width='1' height='2'/><rect x='20' y='3' width='1' height='2'/><rect x='21' y='1' width='1' height='2'/><rect x='21' y='5' width='1' height='2'/><rect x='23' y='2' width='1' height='1'/><rect x='24' y='0' width='1' height='1'/><rect x='24' y='2' width='1' height='5'/></svg>");
-  background-size: 100% 100%;
-  background-color: #fff;
+  text-align: right;
   width: 33vw;
   height: 33vh;
-  vertical-align: top;
-  text-align: right;
 }
 
-button#do.lit {
-  background: radial-gradient(at 33.3% 33.3%, #cff, #9fc);
+button#key0.lit {
+  background: radial-gradient(
+    at 33.3% 33.3%,
+    var(--color-0-highlight),
+    var(--color-0-lit)
+  );
 }
 
-button#do.on {
-  background: radial-gradient(at 33.3% 33.3%, #fff, #9ff);
+button#key0.on {
+  background: radial-gradient(
+    at 33.3% 33.3%,
+    var(--color-0-highlight),
+    var(--color-0-on)
+  );
 }
 
-button#re.lit {
-  background: radial-gradient(at 33.3% 33.3%, #3ff, #0fc);
+button#key1.lit {
+  background: radial-gradient(
+    at 33.3% 33.3%,
+    var(--color-1-highlight),
+    var(--color-1-lit)
+  );
 }
 
-button#re.on {
-  background: radial-gradient(at 33.3% 33.3%, #cff, #0ff);
+button#key1.on {
+  background: radial-gradient(
+    at 33.3% 33.3%,
+    var(--color-1-highlight),
+    var(--color-1-on)
+  );
 }
 
-button#mi.lit {
-  background: radial-gradient(at 33.3% 33.3%, #3cc, #09c);
+button#key2.lit {
+  background: radial-gradient(
+    at 33.3% 33.3%,
+    var(--color-2-highlight),
+    var(--color-2-lit)
+  );
 }
 
-button#mi.on {
-  background: radial-gradient(at 33.3% 33.3%, #3cf, #09f);
+button#key2.on {
+  background: radial-gradient(
+    at 33.3% 33.3%,
+    var(--color-2-highlight),
+    var(--color-2-on)
+  );
 }
 
-button#fa.lit {
-  background: radial-gradient(at 33.3% 33.3%, #ccc, #99c);
+button#key3.lit {
+  background: radial-gradient(
+    at 33.3% 33.3%,
+    var(--color-3-highlight),
+    var(--color-3-lit)
+  );
 }
 
-button#fa.on {
-  background: radial-gradient(at 33.3% 33.3%, #ccf, #99f);
+button#key3.on {
+  background: radial-gradient(
+    at 33.3% 33.3%,
+    var(--color-3-highlight),
+    var(--color-3-on)
+  );
 }
 
-button#so.lit {
-  background: radial-gradient(at 33.3% 33.3%, #fcf, #f9c);
+button#key4.lit {
+  background: radial-gradient(
+    at 33.3% 33.3%,
+    var(--color-4-highlight),
+    var(--color-4-lit)
+  );
 }
 
-button#so.on {
-  background: radial-gradient(at 33.3% 33.3%, #fcf, #f9f);
+button#key4.on {
+  background: radial-gradient(
+    at 33.3% 33.3%,
+    var(--color-4-highlight),
+    var(--color-4-on)
+  );
 }
 
-button#la.lit {
-  background: radial-gradient(at 33.3% 33.3%, #f3f, #f0c);
+button#key5.lit {
+  background: radial-gradient(
+    at 33.3% 33.3%,
+    var(--color-5-highlight),
+    var(--color-5-lit)
+  );
 }
 
-button#la.on {
-  background: radial-gradient(at 33.3% 33.3%, #f9f, #f0f);
+button#key5.on {
+  background: radial-gradient(
+    at 33.3% 33.3%,
+    var(--color-5-highlight),
+    var(--color-5-on)
+  );
 }
 
-button#ti.lit {
-  background: radial-gradient(at 33.3% 33.3%, #c3c, #90c);
+button#key6.lit {
+  background: radial-gradient(
+    at 33.3% 33.3%,
+    var(--color-6-highlight),
+    var(--color-6-lit)
+  );
 }
 
-button#ti.on {
-  background: radial-gradient(at 33.3% 33.3%, #c3f, #90f);
+button#key6.on {
+  background: radial-gradient(
+    at 33.3% 33.3%,
+    var(--color-6-highlight),
+    var(--color-6-on)
+  );
 }
 
-button#do1.lit {
-  background: radial-gradient(at 33.3% 33.3%, #33c, #00c);
+button#key7.lit {
+  background: radial-gradient(
+    at 33.3% 33.3%,
+    var(--color-7-highlight),
+    var(--color-7-lit)
+  );
 }
 
-button#do1.on {
-  background: radial-gradient(at 33.3% 33.3%, #33f, #00f);
+button#key7.on {
+  background: radial-gradient(
+    at 33.3% 33.3%,
+    var(--color-7-highlight),
+    var(--color-7-on)
+  );
+}
+
+circle.btn {
+  fill: white;
+  stroke: var(--gray-color);
+  stroke-width: max(0.05vw, 0.5px);
+}
+
+circle.indicator {
+  fill: var(--gray-color);
+  stroke: none;
+}
+
+path {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 0.1vw;
+}
+
+.on path,
+.on circle.btn {
+  stroke: #0f0;
+}
+
+.on circle.indicator {
+  fill: #0f0;
+}
+
+.sound {
+  visibility: hidden;
+}
+
+.on .sound {
+  visibility: visible;
+}
+rect {
+  stroke: none;
+  fill: var(--gray-color);
 }

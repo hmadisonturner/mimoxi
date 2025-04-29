@@ -103,6 +103,9 @@ div#panel {
   text-align: right;
   width: 100%;
   height: 100%;
+  background-image: url("data:image/svg+xml, %3Csvg xmlns='http://www.w3.org/2000/svg' id='logo' viewBox='0 0 25 8'%3E%3Cstyle%3Erect %7Bfill: %23ccc%7D%3C/style%3E%3Crect x='0' y='2' width='1' height='5' /%3E%3Crect x='1' y='1' width='1' height='1' /%3E%3Crect x='2' y='2' width='1' height='5' /%3E%3Crect x='3' y='1' width='1' height='1' /%3E%3Crect x='4' y='2' width='1' height='5' /%3E%3Crect x='6' y='2' width='1' height='1' /%3E%3Crect x='7' y='0' width='1' height='1' /%3E%3Crect x='7' y='2' width='1' height='5' /%3E%3Crect x='9' y='2' width='1' height='5' /%3E%3Crect x='10' y='1' width='1' height='1' /%3E%3Crect x='11' y='2' width='1' height='5' /%3E%3Crect x='12' y='1' width='1' height='1' /%3E%3Crect x='13' y='2' width='1' height='5' /%3E%3Crect x='15' y='2' width='1' height='4' /%3E%3Crect x='16' y='1' width='1' height='1' /%3E%3Crect x='16' y='6' width='1' height='1' /%3E%3Crect x='17' y='2' width='1' height='4' /%3E%3Crect x='19' y='1' width='1' height='2' /%3E%3Crect x='19' y='5' width='1' height='2' /%3E%3Crect x='20' y='3' width='1' height='2' /%3E%3Crect x='21' y='1' width='1' height='2' /%3E%3Crect x='21' y='5' width='1' height='2' /%3E%3Crect x='23' y='2' width='1' height='1' /%3E%3Crect x='24' y='0' width='1' height='1' /%3E%3Crect x='24' y='2' width='1' height='5' /%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 50%;
 }
 
 button#key0.lit {

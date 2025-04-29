@@ -64,6 +64,7 @@ svg {
   visibility: hidden;
   width: min(0.5in, 10dvw);
   margin: 5%;
+  margin-bottom: min(3dvh, 0.2in);
 }
 
 svg#logo {
